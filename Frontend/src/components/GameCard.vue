@@ -22,7 +22,7 @@
 
   
   <script>
-  import gameCollection from '/GameCollection.json';
+  import gameCollection from '../GameCollection.json';
 
 export default {
   name: 'GameCard',

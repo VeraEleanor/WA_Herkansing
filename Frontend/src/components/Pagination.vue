@@ -1,50 +1,46 @@
 <template>
   <div>
-    <GameCard v-for="game in paginatedData" :key="game.id" :game="game"></GameCard>
+    <GameCard v-for="game in paginatedData[currentPage - 1]" :key="game.id" :game="game"></GameCard>
   </div>
 </template>
 
 <script>
 import GameCard from './GameCard.vue';
-import gameCollection from './/GameCollection.json'; 
 
 export default {
-name: 'GamePagination',
-components: {
-  GameCard,
-},
-data() {
-  return {
-    gameCollection: [],
-    currentPage: 1,
-    itemsPerPage: 5,
-  };
-},
-computed: {
-  paginatedData() {
-    const start = (this.currentPage - 1) * this.itemsPerPage;
-    const end = start + this.itemsPerPage;
-    return this.orderById().slice(start, end);
+  name: 'GamePagination',
+  components: {
+    GameCard,
   },
-  pageCount() {
-    return Math.ceil(this.gameCollection.length / this.itemsPerPage);
+  data() {
+    return {
+      gameCollection: [],
+      currentPage: 1,
+      itemsPerPage: 5,
+    };
   },
-},
-created() {
-  this.fetchData();
-},
-methods: {
-  fetchData() {
-    this.gameCollection = gameCollection;
+  computed: {
+    paginatedData() {
+      let result = [];
+      if(this.gameCollection){
+        for(let i = 0; i < this.gameCollection.length; i += this.itemsPerPage){
+          result.push(this.gameCollection.slice(i, i + this.itemsPerPage));
+        }
+      }
+      return result;
+    },
   },
-  changePage(pageNumber) {
-    this.currentPage = pageNumber;
+  created() {
+    this.fetchData();
   },
-  orderById() { 
-    const sortedGames = [...this.gameCollection];
-    sortedGames.sort((a, b) => a.id - b.id);
-    return sortedGames;
+  methods: {
+    async fetchData() {
+      const response = await fetch('/GameCollection.json');
+      this.gameCollection = await response.json();
+    },
+    changePage(pageNumber) {
+      this.currentPage = pageNumber;
+    },
   },
-},
 };
 </script>
