@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Static/styles.css">
+
+</head>
+
+<body>
+    <nav>
+        <button id="filter-btn"><img src="/Static/img/filter.png" alt="filter"></button>
+       
+        <input type="text" id="search" placeholder="Search..">
+        <div id="home" ><a href="#" id="home-btn"><h1>Game Collectie</h1></a> </div>
+        <ul>
+            <li><a href="#1">Pagina 1</a></li>
+            <li><a href="#2">Pagina 2</a></li>
+            <li><a href="#3">Pagina 3</a></li>
+        </ul>
+        
+    </nav>
+    <div id="sidebar" class="sidebar">
+        <h3>Sorteren op: </h3>
+        <button id="close-filter-btn"><img src="img/close.png" alt="close"></button>
+            <ul>
+            <li><button class="sort-option" data-sort="name AZ">Naam oplopend</button></li>
+            <li><button class="sort-option" data-sort="name ZA">Naam aflopend</button></li>
+            <li><button class="sort-option" data-sort="year">Jaar oplopend</button></li>
+            <li><button class="sort-option" data-sort="year reversed">Jaar aflopend</button></li>
+            <li>
+                <div class="dropdown">
+                  <button class="sort-option dropdown-button" data-sort="genre">Genre</button>
+                  <div class="dropdown-content">
+                    <a href="#" data-genre="Actie">Actie</a>
+                    <a href="#" data-genre="Adventure">Adventure</a>
+                    <a href="#" data-genre="RPG">RPG</a>
+                    <a href="#" data-genre="Survival Horror">Survival Horror</a>
+                    <a href="#" data-genre="Simulatie">Simulatie</a>
+                  </div>                  
+                </div>
+            </li>
+            <li><button class="sort-option" data-sort="favorited">Favorieten</button></li>
+
+        </ul>
+        </div>
+    </div>
+    <header>
+        <div id="current-page"></div>
+    <div class="searchnav">
+
+    </div>
+    </header>
+    <div class="game-item-template" style="display: none;">
+        <div class="game-item" id="game-item">
+          <img src="" alt="">
+          <div class="game-info" id="game-info">
+            <h3></h3>
+            <div class="game-details">
+              <p></p>
+              <span class="genre"></span>
+            </div>
+            <button class="heart-btn" data-favorited="false">&#9825;</button>
+          </div>
+        </div>
+      </div>
+      
+
+    <div class="game-container">
+    </div>
+    
+    <div id="overlay" class="hidden"></div>
+<div id="game-popup-overlay" class="hidden" onclick="closeGamePopup()"></div>
+    <div id="game-popup" class="hidden">
+        <h2 id="game-title"></h2>
+        <p id="game-description"></p>
+        <button onclick="closeGamePopup()">Sluiten</button>
+    </div>
+    
+    <script src="/Static/script.js"></script>
+   
+      
+</body>
+<footer>
+    <p>© 2023 - Haagse Hogeschool</p>
+    <p> Vera Woerdeman - 15005755</p>
+</footer>
+</html>
